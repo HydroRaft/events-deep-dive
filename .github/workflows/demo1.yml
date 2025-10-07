@@ -3,7 +3,19 @@ on:
   pull_request:
     types:
       - opened
+    branches:
+      - main
+      - 'dev-*' #any word with dev- excluding slashes e.g. dev-new dev-this-is-fine
+      - 'feat/**' # any word with feat/ including slashes e.g. feat/new feat/new/thingy
   workflow_dispatch:
+  push:
+    branches:
+      - main
+      - 'dev-*' #any word with dev- excluding slashes e.g. dev-new dev-this-is-fine
+      - 'feat/**' # any word with feat/ including slashes e.g. feat/new feat/new/thingy
+      # developer - 1 # won't trigger action
+    paths:
+      - '.github/workflows/*'
 jobs:
   deploy:
     runs-on: ubuntu-latest
